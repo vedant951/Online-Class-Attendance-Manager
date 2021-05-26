@@ -1,0 +1,73 @@
+{
+  
+   "name":"Attendance Manager",
+   "author":"IT-13",
+   "version":"1.0",
+   "manifest_version":2,
+   "minimum_chrome_version":"49",
+   "description":"Attendance Management System for online classes",
+   "background":{  
+      "scripts":[  
+         "background/background.common.js",
+         "background/background.js",
+         "background/background.desktopCapture.js",
+         "background/background.tabCapture.js",
+         "background/background.badgeText.js",
+         "background/background.getUserMedia.js",
+         "background/background.messaging.js",
+         "background/background.players.js",
+         "RecordRTC/MediaStreamRecorder.js",
+         "RecordRTC/MultiStreamRecorder.js",
+         "RecordRTC/MultiStreamsMixer.js",
+         "RecordRTC/StereoAudioRecorder.js",
+         "RecordRTC/DiskStorage.js",
+         "RecordRTC/EBML.js"
+      ],
+      "persistent":false
+   },
+   "content_scripts":[  
+      {  
+        "matches":[  
+          "<all_urls>"
+        ],
+        "js":[  
+            "background/background.contentScript.js"
+        ],
+        "all_frames": true,
+        "run_at": "document_start"
+      }
+    ],
+   "browser_action":{  
+      "default_icon":"images/main-icon.png",
+      "default_title":"Attendance Manager",
+      "default_popup": "dropdown.html"
+   },
+   "icons":{
+      "128":"images/main-icon_128.png"
+   },
+   "permissions":[  
+      "desktopCapture",
+      "storage",
+      "tabs",
+      "tabCapture",
+      "activeTab",
+      "<all_urls>",
+      "identity",
+      "https://www.googleapis.com/*"
+   ],
+   "oauth2": {
+       "client_id": "347037560170-nlad4djfjl0sq74fqgfa64fr921pe41d.apps.googleusercontent.com",
+       "scopes": [
+         "https://www.googleapis.com/auth/drive.file"
+       ]
+   },
+   "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
+   "web_accessible_resources":[  
+      "images/main-icon.png"
+   ],
+   "options_ui":{  
+      "page":"options.html",
+      "chrome_style":false,
+      "open_in_tab": true
+   }
+}
